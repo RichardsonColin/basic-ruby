@@ -1,12 +1,5 @@
-puts "What would you like to incript?\nPlease type here: "
-user_input = gets.chomp
-puts "And by how much would you like to shift the letters?\nAnything from 1-25: "
-shift = gets.chomp.to_i
 
-def caeser_cipher(user_input, shift)
-
-	string = user_input
-	num = shift
+def caeser_cipher(string, num)
 
 	string.each_char do |c|
 		x = c.ord
@@ -16,19 +9,15 @@ def caeser_cipher(user_input, shift)
 	  	x += num % 26
 
 	  	# Wraps back to "a".
-	  	unless x < 91
-	  		x -= 26
-	  	end
+	  	x -= 26 unless x < 91
 
 	  # Between 97-122 are uppercase alphabet in .ord.
 	  elsif x >= 97 && x <= 122
 	  	x += num % 26
 
 	  	# Wraps back to "A".
-	  	unless x < 123
-	  		x -= 26	  		
-	  	end
-
+	  	x -= 26	unless x < 123
+	  	
 	  else
 	  	x = x
 		end
@@ -38,5 +27,10 @@ def caeser_cipher(user_input, shift)
 	end
 	
 end
+
+puts "What would you like to incript?\nPlease type here: "
+user_input = gets.chomp
+puts "And by how much would you like to shift the letters?\nAnything from 1-25: "
+shift = gets.chomp.to_i
 
 caeser_cipher(user_input, shift)
